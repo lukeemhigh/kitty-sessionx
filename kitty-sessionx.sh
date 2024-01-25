@@ -26,7 +26,9 @@ fi
 
 if [[ "${active_sessions[*]}" == *" ${match} "* ]]; then
 	kitty @ focus-tab --match title:"${match}"
+elif [[ -d "${query}" ]]; then
+	kitty @ launch --type=tab --tab-title="$(basename "${query}")" --cwd="${query}"
 else
-	z_target=$(zoxide query "${query}")
+	z_target=$(zoxide query "${query}" || echo "${HOME}")
 	kitty @ launch --type=tab --tab-title="$(basename "${z_target}")" --cwd="${z_target}"
 fi
