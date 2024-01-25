@@ -20,6 +20,10 @@ readarray -t results <<<"${selection}"
 query="${results[0]}"
 match="${results[1]}"
 
+if [[ -z "${query}" ]] && [[ -z "${match}" ]]; then
+	exit
+fi
+
 if [[ "${active_sessions[*]}" == *" ${match} "* ]]; then
 	kitty @ focus-tab --match title:"${match}"
 else
