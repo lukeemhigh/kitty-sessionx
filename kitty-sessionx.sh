@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
+# Kitty "session" manager
+#
+# Author Luca Giugliardi
+# Email: luca.giugliardi@gmail.com
+#
+# Kudos:
+#		https://zachwashere.substack.com/p/ditching-tmux-for-kitty
+#		https://github.com/taylorzr/kitty-meow
+#		https://github.com/omerxx/tmux-sessionx/blob/main/scripts/sessionx.sh
+#
+# ----------------------------- Shell Options ----------------------------
 
-fzf_label=" Kitty SessionX "
+set -o pipefail
 
 active_sessions=$(kitty @ ls | jq -r '.[0].tabs | map(.title) | .[]')
 
@@ -9,7 +20,7 @@ selection=$(echo "${active_sessions[@]//\\n/}" |
 		--prompt='Sessions > ' \
 		--layout=reverse \
 		--border \
-		--border-label="${fzf_label}" \
+		--border-label="Kitty Sessionx" \
 		--border-label-pos=3 \
 		--padding=3%,1% \
 		--color='border:#7aa2f7,label:#7aa2f7,separator:#565f89,prompt:#bb9af7' \
@@ -17,18 +28,18 @@ selection=$(echo "${active_sessions[@]//\\n/}" |
 
 readarray -t results <<<"${selection}"
 
-query="${results[0]}"
-match="${results[1]}"
+query="${results[0]:-null}"
+match="${results[1]:-null}"
 
-if [[ -z "${query}" ]] && [[ -z "${match}" ]]; then
+if [[ "${query}" == "null" ]] && [[ "${match}" == "null" ]]; then
 	exit
 fi
 
-if [[ "${active_sessions[*]}" == *" ${match} "* ]]; then
+if [[ "${active_sessions[*]}" =~ ${match} ]] && [[ "${match}" != "null" ]]; then
 	kitty @ focus-tab --match title:"${match}"
-elif [[ -d "${query}" ]]; then
+elif [[ -d "${query}" ]] && [[ "${query}" != "null" ]]; then
 	kitty @ launch --type=tab --tab-title="$(basename "${query}")" --cwd="${query}"
 else
 	z_target=$(zoxide query "${query}" || echo "${HOME}")
-	kitty @ launch --type=tab --tab-title="$(basename "${z_target}")" --cwd="${z_target}"
+	kitty @ launch --type=tab --tab-title="${query}" --cwd="${z_target}"
 fi
