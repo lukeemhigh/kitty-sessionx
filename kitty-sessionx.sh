@@ -13,9 +13,10 @@
 
 set -o pipefail
 
-active_sessions=$(kitty @ ls | jq -r '.[0].tabs | map(.title) | .[]')
+# Add an index in front of every tab title to be used below (adding 1 to match kitty's displayed indexes in tab titles)
+active_sessions=$(kitty @ ls | jq -r '.[0].tabs | map(.title) | to_entries | map("\(.key + 1) \(.value)") | .[]')
 
-selection=$(echo "${active_sessions[@]//\\n/}" |
+selection=$(printf '%s\n' "${active_sessions[@]}" |
 	fzf --print-query \
 		--prompt='Sessions > ' \
 		--layout=reverse \
@@ -29,14 +30,16 @@ selection=$(echo "${active_sessions[@]//\\n/}" |
 readarray -t results <<<"${selection}"
 
 query="${results[0]:-null}"
-match="${results[1]:-null}"
+match="${results[1]%% *}"
 
-if [[ "${query}" == "null" ]] && [[ "${match}" == "null" ]]; then
+if [[ "${query}" == "null" ]] && [[ -z "${match}" ]]; then
 	exit
 fi
 
-if [[ "${active_sessions[*]}" =~ ${match} ]] && [[ "${match}" != "null" ]]; then
-	kitty @ focus-tab --match title:"${match}"
+if [[ "${active_sessions[*]}" =~ (${match}) ]] && [[ -n "${match}" ]]; then
+	# Use tab indexes instead of titles because tabs with automatic titles are a moving target
+	# (subtracting 1 to use the same index counting that kitty uses under the hood)
+	kitty @ focus-tab --match index:"$((match - 1))"
 elif [[ -d "${query}" ]] && [[ "${query}" != "null" ]]; then
 	kitty @ launch --type=tab --tab-title="$(basename "${query}")" --cwd="${query}"
 else
