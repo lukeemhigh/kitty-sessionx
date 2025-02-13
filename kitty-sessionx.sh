@@ -2,7 +2,7 @@
 # Kitty "session" manager
 #
 # Author Luca Giugliardi
-# Email: luca.giugliardi@gmail.com
+# Email: lukeemhigh+dev@protonmail.com
 #
 # Kudos:
 #		https://zachwashere.substack.com/p/ditching-tmux-for-kitty
@@ -13,36 +13,37 @@
 
 set -o pipefail
 
-# Add an index in front of every tab title to be used below (adding 1 to match kitty's displayed indexes in tab titles)
-active_sessions=$(kitty @ ls | jq -r '.[0].tabs | map(.title) | to_entries | map("\(.key + 1) \(.value)") | .[]')
+cmd="$(readlink -f "${0}")"
+cmd_path="$(dirname "${cmd}")"
+lib_path="${cmd_path}/lib"
 
-selection=$(printf '%s\n' "${active_sessions[@]}" |
-	fzf --print-query \
-		--prompt='Sessions > ' \
-		--layout=reverse \
-		--border \
-		--border-label="Kitty Sessionx" \
-		--border-label-pos=3 \
-		--padding=3%,1% \
-		--color='border:#7aa2f7,label:#7aa2f7,separator:#565f89,prompt:#bb9af7' \
-		--color='fg:#a9b1d6,bg+:#292e42,fg+:#73daca,pointer:#9d7cd8,info:#9d7cd8')
+TABS_PROMPT=' Kitty Tabs > '
+TABS_HEADER='󰌑 : Switch to Selected Tab, Ctrl-X: Browse Config Directory, Ctrl-F: Browse Projects, Ctrl-R: Rename Tab, Alt-Backspace: Delete Tab'
+TABS_RELOAD='kitty @ ls | jq -r ".[] | .tabs[] | .title"'
 
-readarray -t results <<<"${selection}"
+CONFIG_PROMPT=' Config Files > '
+CONFIG_HEADER='󰌑 : Open New Tab in Selected Path, Ctrl-S: Browse Kitty Tabs, Ctrl-F: Browse Projects'
+CONFIG_RELOAD='fd . ~/.config --min-depth 1 --max-depth 1 --type d --type l'
 
-query="${results[0]:-null}"
-match="${results[1]%% *}"
+PROJECTS_PROMPT=' Projects > '
+PROJECTS_HEADER='󰌑 : Open New Tab in Selected Path, Ctrl-S: Browse Kitty Tabs, Ctrl-X: Browse Config Directory'
+PROJECTS_RELOAD='fd . ~/git-repos/** --min-depth 1 --max-depth 1 --type d'
 
-if [[ "${query}" == "null" ]] && [[ -z "${match}" ]]; then
-	exit
-fi
+readarray -t active_sessions <<<"$(kitty @ ls | jq -r '.[] | .tabs[] | .title')"
 
-if [[ "${active_sessions[*]}" =~ (${match}) ]] && [[ -n "${match}" ]]; then
-	# Use tab indexes instead of titles because tabs with automatic titles are a moving target
-	# (subtracting 1 to use the same index counting that kitty uses under the hood)
-	kitty @ focus-tab --match index:"$((match - 1))"
-elif [[ -d "${query}" ]] && [[ "${query}" != "null" ]]; then
-	kitty @ launch --type=tab --tab-title="$(basename "${query}")" --cwd="${query}"
-else
-	z_target=$(zoxide query "${query}" || echo "${HOME}")
-	kitty @ launch --type=tab --tab-title="${query}" --cwd="${z_target}"
-fi
+printf '%s\n' "${active_sessions[@]}" |
+  fzf --ansi \
+    --prompt="${TABS_PROMPT}" \
+    --header="${TABS_HEADER}" \
+    --preview="${lib_path}/preview.sh {}" \
+    --preview-label='Ctrl-U: Scroll Up, Ctrl-D: Scroll Down' \
+    --bind "enter:execute(${lib_path}/selection-handler.sh {q} {})+abort" \
+    --bind "ctrl-r:execute(${lib_path}/rename-tab.sh {})+clear-query+reload(${TABS_RELOAD})" \
+    --bind "alt-backspace:execute(${lib_path}/close-tab.sh {})+clear-query+reload(${TABS_RELOAD})" \
+    --bind "ctrl-x:reload(${CONFIG_RELOAD})+change-prompt(${CONFIG_PROMPT})+change-header(${CONFIG_HEADER})" \
+    --bind "ctrl-s:reload(${TABS_RELOAD})+change-prompt(${TABS_PROMPT})+change-header(${TABS_HEADER})" \
+    --bind "ctrl-f:reload(${PROJECTS_RELOAD})+change-prompt(${PROJECTS_PROMPT})+change-header(${PROJECTS_HEADER})" \
+    --bind "ctrl-d:preview-down" \
+    --bind "ctrl-u:preview-up" \
+    --layout=reverse \
+    --padding=3%,1%
