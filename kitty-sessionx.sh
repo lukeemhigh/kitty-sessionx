@@ -32,6 +32,7 @@ if [[ -n "${config_file:-}" ]]; then
   eval "$(yq -e --raw-output '
     "CONFIG_RELOAD=\"" + .reload.config + "\"
     PROJECTS_RELOAD=\"" + .reload.projects + "\"
+    TABS_PROMPT=\"" + .prompt.tabs + "\"
     CONFIG_PROMPT=\"" + .prompt.config + "\"
     PROJECTS_PROMPT=\"" + .prompt.projects + "\"
     TABS_HEADER=\"" + .header.tabs + "\"
@@ -43,7 +44,7 @@ fi
 
 export DIR_PREVIEW=${DIR_PREVIEW:-ls --color=always -lh}
 
-TABS_PROMPT=' Kitty Tabs > '
+TABS_PROMPT="${TABS_PROMPT:- Kitty Tabs > }"
 TABS_HEADER="${TABS_HEADER:-󰌑 : Switch to Selected Tab, Ctrl-X: Browse Config Directory, Ctrl-F: Browse Projects, Ctrl-R: Rename Tab, Alt-Backspace: Delete Tab}"
 TABS_RELOAD='kitty @ ls | jq -r ".[] | .tabs[] | .title"'
 

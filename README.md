@@ -58,7 +58,7 @@
 
 ## Key Bindings
 
-- **Enter:** Execute the selection, switching focus to the chosen tab or launching a new one based on the provided query.
+- **Enter:** Confirm selection/query, switching focus to the chosen tab or launching a new one based on the provided query.
 - **Ctrl-R:** Rename the selected tab.
 - **Alt-Backspace:** Close the selected tab.
 - **Ctrl-X:** Reload to browse configuration directories (defaults to `~/.config`).
