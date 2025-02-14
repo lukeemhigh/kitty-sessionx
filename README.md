@@ -18,8 +18,8 @@
 - [Overview](#overview)
 - [Requirements](#requirements)
 - [Features](#features)
-- [Key Bindings](#key-bindings)
 - [Installation & Usage](#installation--usage)
+- [Key Bindings](#key-bindings)
 - [TODO](#todo)
 
 ## Requirements
