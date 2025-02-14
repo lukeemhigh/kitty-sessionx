@@ -15,20 +15,11 @@
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Requirements](#requirements)
 - [Features](#features)
+- [Requirements](#requirements)
 - [Installation & Usage](#installation--usage)
 - [Key Bindings](#key-bindings)
 - [TODO](#todo)
-
-## Requirements
-
-- [Kitty](https://sw.kovidgoyal.net/kitty/)
-- [fzf](https://github.com/junegunn/fzf): used to select and switch between tabs interactively
-- [zoxide](https://github.com/ajeetdsouza/zoxide): used to locate optimal directories when launching new sessions
-- [eza](https://github.com/eza-community/eza): _optional_ - used to list directory contents for previewing
-- [jq](https://github.com/stedolan/jq): used to parse JSON output from Kitty
 
 ## Features
 
@@ -40,6 +31,14 @@
 - **Preview Support:**
   - Preview directories using file listings with `eza`.
   - Preview tab contents by retrieving the text output from `kitty`.
+
+## Requirements
+
+- [Kitty](https://sw.kovidgoyal.net/kitty/)
+- [fzf](https://github.com/junegunn/fzf): used to select and switch between tabs interactively
+- [zoxide](https://github.com/ajeetdsouza/zoxide): used to locate optimal directories when launching new sessions
+- [eza](https://github.com/eza-community/eza): _optional_ - used to list directory contents for previewing
+- [jq](https://github.com/stedolan/jq): used to parse JSON output from Kitty
 
 ## Installation & Usage
 
