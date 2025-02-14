@@ -13,6 +13,15 @@
 
 `kitty-sessionx` is a session manager for [Kitty](https://sw.kovidgoyal.net/kitty/) that leverages `fzf` for managing terminal tabs. It enables you to switch between tabs, launch new ones, rename, and close existing tabs with custom key bindings—making tab management quick and efficient.
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Requirements](#requirements)
+- [Features](#features)
+- [Key Bindings](#key-bindings)
+- [Installation & Usage](#installation--usage)
+- [TODO](#todo)
+
 ## Requirements
 
 - [Kitty](https://sw.kovidgoyal.net/kitty/)
