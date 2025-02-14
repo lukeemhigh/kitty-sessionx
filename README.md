@@ -61,9 +61,9 @@
 - **Enter:** Execute the selection, switching focus to the chosen tab or launching a new one based on the provided input.
 - **Ctrl-R:** Rename the selected tab.
 - **Alt-Backspace:** Close the selected tab.
-- **Ctrl-X:** Reload to browse configuration directories from `~/.config`.
-- **Ctrl-S:** Refresh the list of active `kitty` tabs.
-- **Ctrl-F:** Browse project directories (from `~/git-repos`).
+- **Ctrl-X:** Reload to browse configuration directories (defaults to `~/.config`).
+- **Ctrl-S:** Refresh/reload the list of active `kitty` tabs.
+- **Ctrl-F:** Browse project directories (defaults to `~/workspace`).
 - **Ctrl-U / Ctrl-D:** Scroll the preview up or down respectively.
 
 ## Configuration
@@ -116,3 +116,4 @@ preview:
 - [x] External configuration
   - [x] Make file listing command configurable
   - [x] Make search paths for config and projects directories configurable by defining custom commands
+  - [x] Make fzf header configurable
