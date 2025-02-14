@@ -9,8 +9,8 @@
   </tr>
 </table>
   
-<p align="center" style="background: linear-gradient(135deg, #ff5252, #ff8a80); color: #fff; padding: 20px; border-radius: 10px; font-weight: bold; font-size: 1.2em; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-  WIP: This project is still pretty much in alpha state.
+<p align="center">
+  <img src="https://img.shields.io/badge/WIP%3A%20Alpha%20State-red.svg" alt="WIP: This project is still pretty much in alpha state." />
 </p>
 
 `kitty-sessionx` is a session manager for [Kitty](https://sw.kovidgoyal.net/kitty/) that leverages `fzf` for managing terminal tabs. It enables you to switch between tabs, launch new ones, rename, and close existing tabs with custom key bindings—making tab management quick and efficient.
