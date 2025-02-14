@@ -41,16 +41,6 @@
   - Preview directories using file listings with `eza`.
   - Preview tab contents by retrieving the text output from `kitty`.
 
-## Key Bindings
-
-- **Enter:** Execute the selection, switching focus to the chosen tab or launching a new one based on the provided input.
-- **Ctrl-R:** Rename the selected tab.
-- **Alt-Backspace:** Close the selected tab.
-- **Ctrl-X:** Reload to browse configuration directories from `~/.config`.
-- **Ctrl-S:** Refresh the list of active `kitty` tabs.
-- **Ctrl-F:** Browse project directories (from `~/git-repos`).
-- **Ctrl-U / Ctrl-D:** Scroll the preview up or down respectively.
-
 ## Installation & Usage
 
 1. Clone this repository:
@@ -66,6 +56,16 @@
    ```
 
 3. Reload `kitty` or restart your terminal emulator to apply the changes.
+
+## Key Bindings
+
+- **Enter:** Execute the selection, switching focus to the chosen tab or launching a new one based on the provided input.
+- **Ctrl-R:** Rename the selected tab.
+- **Alt-Backspace:** Close the selected tab.
+- **Ctrl-X:** Reload to browse configuration directories from `~/.config`.
+- **Ctrl-S:** Refresh the list of active `kitty` tabs.
+- **Ctrl-F:** Browse project directories (from `~/git-repos`).
+- **Ctrl-U / Ctrl-D:** Scroll the preview up or down respectively.
 
 ## TODO
 
