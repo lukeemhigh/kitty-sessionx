@@ -88,11 +88,14 @@ reload:
   projects: ...
 ```
 
-### Modify Fzf Headers
+### Modify Fzf Headers/Prompts
 
-If you modified one of the directory being searched, you may also want to modify the header being shown when reloading fzf to search that path to reflect the change. You can do so by modifying these keys in the config file:
+If you modified one of the directory being searched, you may also want to modify the header and prompts being shown when reloading fzf to search that path to reflect the change. You can do so by modifying these keys in the config file:
 
 ```yaml
+prompt:
+  config: "Your custom prompt here"
+  projects: ...
 header:
   tabs: "Your custom header here"
   config: ...
