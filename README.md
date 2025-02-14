@@ -57,3 +57,9 @@
    ```
 
 3. Reload `kitty` or restart your terminal emulator to apply the changes.
+
+## TODO
+
+- [ ] Externally configurable inner workings
+  - [ ] Make file listing command configurable
+  - [ ] Make search paths for config and project configurable by defining custom commands
