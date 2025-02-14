@@ -38,6 +38,13 @@ if [[ -n "${config_file:-}" ]]; then
     TABS_HEADER=\"" + .header.tabs + "\"
     CONFIG_HEADER=\"" + .header.config + "\"
     PROJECTS_HEADER=\"" + .header.projects + "\"
+    TABS_KEYBIND=\"" + .keys.tabs + "\"
+    CONFIG_KEYBIND=\"" + .keys.config + "\"
+    PROJECTS_KEYBIND=\"" + .keys.projects + "\"
+    RENAME_KEYBIND=\"" + .keys.rename + "\"
+    CLOSE_KEYBIND=\"" + .keys.close + "\"
+    PREVIEW_UP_KEYBIND=\"" + .keys.previewUp + "\"
+    PREVIEW_DOWN_KEYBIND=\"" + .keys.previewDown + "\"
     DIR_PREVIEW=\"" + .preview.cmd + "\""
   ' "${config_file}" | sed 's/\$/\\$/g')"
 fi
@@ -56,6 +63,14 @@ PROJECTS_PROMPT="${PROJECTS_PROMPT:- Projects > }"
 PROJECTS_HEADER="${PROJECTS_HEADER:-󰌑 : Open New Tab in Selected Path, Ctrl-S: Browse Kitty Tabs, Ctrl-X: Browse Config Directory}"
 PROJECTS_RELOAD="${PROJECTS_RELOAD:-fd . ~/workspace/** --min-depth 1 --max-depth 1 --type d}"
 
+TABS_KEYBIND="${TABS_KEYBIND:-ctrl-s}"
+CONFIG_KEYBIND="${CONFIG_KEYBIND:-ctrl-x}"
+PROJECTS_KEYBIND="${PROJECTS_KEYBIND:-ctrl-f}"
+RENAME_KEYBIND="${RENAME_KEYBIND:-ctrl-r}"
+CLOSE_KEYBIND="${CLOSE_KEYBIND:-alt-backspace}"
+PREVIEW_UP_KEYBIND="${PREVIEW_UP_KEYBIND:-ctrl-u}"
+PREVIEW_DOWN_KEYBIND="${PREVIEW_DOWN_KEYBIND:-ctrl-d}"
+
 readarray -t active_sessions <<<"$(kitty @ ls | jq -r '.[] | .tabs[] | .title')"
 
 printf '%s\n' "${active_sessions[@]}" |
@@ -65,12 +80,12 @@ printf '%s\n' "${active_sessions[@]}" |
     --preview="${lib_path}/preview.sh {}" \
     --preview-label='Ctrl-U: Scroll Up, Ctrl-D: Scroll Down' \
     --bind "enter:execute(${lib_path}/selection-handler.sh {q} {})+abort" \
-    --bind "ctrl-r:execute(${lib_path}/rename-tab.sh {})+clear-query+reload(${TABS_RELOAD})" \
-    --bind "alt-backspace:execute(${lib_path}/close-tab.sh {})+clear-query+reload(${TABS_RELOAD})" \
-    --bind "ctrl-x:reload(${CONFIG_RELOAD})+change-prompt(${CONFIG_PROMPT})+change-header(${CONFIG_HEADER})" \
-    --bind "ctrl-s:reload(${TABS_RELOAD})+change-prompt(${TABS_PROMPT})+change-header(${TABS_HEADER})" \
-    --bind "ctrl-f:reload(${PROJECTS_RELOAD})+change-prompt(${PROJECTS_PROMPT})+change-header(${PROJECTS_HEADER})" \
-    --bind "ctrl-d:preview-down" \
-    --bind "ctrl-u:preview-up" \
+    --bind "${RENAME_KEYBIND}:execute(${lib_path}/rename-tab.sh {})+clear-query+reload(${TABS_RELOAD})" \
+    --bind "${CLOSE_KEYBIND}:execute(${lib_path}/close-tab.sh {})+clear-query+reload(${TABS_RELOAD})" \
+    --bind "${CONFIG_KEYBIND}:reload(${CONFIG_RELOAD})+change-prompt(${CONFIG_PROMPT})+change-header(${CONFIG_HEADER})" \
+    --bind "${TABS_KEYBIND}:reload(${TABS_RELOAD})+change-prompt(${TABS_PROMPT})+change-header(${TABS_HEADER})" \
+    --bind "${PROJECTS_KEYBIND}:reload(${PROJECTS_RELOAD})+change-prompt(${PROJECTS_PROMPT})+change-header(${PROJECTS_HEADER})" \
+    --bind "${PREVIEW_UP_KEYBIND}:preview-down" \
+    --bind "${PREVIEW_DOWN_KEYBIND}:preview-up" \
     --layout=reverse \
     --padding=3%,1%

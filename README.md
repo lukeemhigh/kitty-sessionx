@@ -77,7 +77,7 @@ A configuration file named `kitty-sessionx.yml` will be searched in this locatio
 
 If one of this files is found, then default configurations will be overridden with the ones provided in the file.
 
-### Modifying Search Paths
+### Modify Search Paths
 
 You can modify the paths that are searched when looking for config or project directories by definining custom commands inside your `kitty-sessionx.yml` file, for example:
 
@@ -87,6 +87,23 @@ reload:
   config: "fd . ~/.dotfiles/**/.config --min-depth 1 --max-depth 1 --type d --type l"
   projects: ...
 ```
+
+### Modify Keybindings
+
+You can change the keybindings used to perform every action in fzf by modifying you config file, for example:
+
+```yaml
+keys:
+  tabs: "ctrl-t"
+  config: ...
+  projects: ...
+  rename: ...
+  close: ...
+  scrollUp: ...
+  scrollDown: ...
+```
+
+For more information about the keybinding format, refer to `man fzf`
 
 ### Modify Fzf Headers/Prompts
 
@@ -127,6 +144,14 @@ header:
   tabs: "󰌑 : Switch to Selected Tab, Ctrl-X: Browse Config Directory, Ctrl-F: Browse Projects, Ctrl-R: Rename Tab, Alt-Backspace: Delete Tab"
   config: "󰌑 : Open New Tab in Selected Path, Ctrl-S: Browse Kitty Tabs, Ctrl-F: Browse Projects"
   projects: "󰌑 : Open New Tab in Selected Path, Ctrl-S: Browse Kitty Tabs, Ctrl-X: Browse Config Directory"
+keys:
+  tabs: "ctrl-s"
+  config: "ctrl-x"
+  projects: "ctrl-f"
+  rename: "ctrl-r"
+  close: "alt-backspace"
+  scrollUp: "ctrl-u"
+  scrollDown: "ctrl-d"
 preview:
   cmd: "ls --color=always -lh"
 ```
@@ -137,4 +162,4 @@ preview:
   - [x] Make file listing command configurable
   - [x] Make search paths for config and projects directories configurable by defining custom commands
   - [x] Make fzf header configurable
-  - [ ] Make keybinds configurable
+  - [x] Make keybinds configurable
