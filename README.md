@@ -1,5 +1,3 @@
-# kitty-sessionx
-
 <table>
   <tr>
     <td><img src="assets/images/screenshot-2025173949409414-014814.png" alt="Screenshot 1" width="400"/></td>
@@ -10,13 +8,12 @@
     <td><img src="assets/images/screenshot-2025173949405014-014730.png" alt="Screenshot 4" width="400"/></td>
   </tr>
 </table>
-
-<p align="center"><strong>WIP: This project is still pretty much in alpha state.</strong></p>
+  
+<p align="center" style="background: linear-gradient(135deg, #ff5252, #ff8a80); color: #fff; padding: 20px; border-radius: 10px; font-weight: bold; font-size: 1.2em; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+  WIP: This project is still pretty much in alpha state.
+</p>
 
 `kitty-sessionx` is a session manager for [Kitty](https://sw.kovidgoyal.net/kitty/) that leverages `fzf` for managing terminal tabs. It enables you to switch between tabs, launch new ones, rename, and close existing tabs with custom key bindings—making tab management quick and efficient.
-
-`kitty-sessionx` is a session manager for [Kitty](https://sw.kovidgoyal.net/kitty/) that leverages `fzf` for managing terminal tabs. It enables you to switch between tabs, launch new ones, rename, and close existing tabs with custom key bindings—making tab management quick and efficient.
-16: `kitty-sessionx` is a session manager for [Kitty](https://sw.kovidgoyal.net/kitty/) that leverages `fzf` for managing terminal tabs. It enables you to switch between tabs, launch new ones, rename, and close existing tabs with custom key bindings—making tab management quick and efficient.
 
 ## Requirements
 
