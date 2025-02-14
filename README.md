@@ -90,7 +90,7 @@ reload:
 
 ### Modify Keybindings
 
-You can change the keybindings used to perform every action in fzf by modifying you config file, for example:
+You can change the keybindings used to perform every action in fzf by modifying you config file:
 
 ```yaml
 keys:
@@ -103,7 +103,7 @@ keys:
   scrollDown: ...
 ```
 
-For more information about the keybinding format, refer to `man fzf`
+For more information about keybindings format, refer to `man fzf`.
 
 ### Modify Fzf Headers/Prompts
 

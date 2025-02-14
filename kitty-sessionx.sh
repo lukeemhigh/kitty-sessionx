@@ -15,7 +15,13 @@ set -o pipefail
 
 cmd="$(readlink -f "${0}")"
 cmd_path="$(dirname "${cmd}")"
+
+if [[ $(pgrep -f "${cmd}" | wc -l) -gt 2 ]]; then
+  exit
+fi
+
 lib_path="${cmd_path}/lib"
+
 declare -a config_paths=(
   "${XDG_CONFIG_HOME:-${HOME}/.config}/kitty/kitty-sessionx.yml"
   "${cmd_path}/kitty-sessionx.yml"
