@@ -25,12 +25,12 @@
 
 - **Tab Management:**
   - **Switch Tabs:** Quickly focus on a tab by selecting its title.
-  - **Launch New Tabs:** Open new tabs in a specified directory. When a non-directory input is provided, `zoxide` is automatically used to find the best matching directory for launching a new session.
+  - **Launch New Tabs:** Open new tabs in a specified directory. When a non-matching query is provided, `zoxide` is automatically called to find a matching directory for launching a new session, else a new session will be launched in your `${HOME}`
   - **Rename Tabs:** Easily update the title of active tabs.
   - **Close Tabs:** Remove tabs with a simple key binding.
 - **Preview Support:**
-  - Preview directories using file listings with `eza`.
-  - Preview tab contents by retrieving the text output from `kitty`.
+  - Preview directory contents with user-defined commands.
+  - Preview the contents of kitty tabs.
 
 ## Requirements
 
@@ -54,11 +54,11 @@
    map kitty_mod+<preferred key> launch --type=overlay ~/path/to/kitty-sessionx/kitty-sessionx.sh
    ```
 
-3. Reload `kitty` or restart your terminal emulator to apply the changes.
+3. Reload or restart `kitty` to apply the changes.
 
 ## Key Bindings
 
-- **Enter:** Execute the selection, switching focus to the chosen tab or launching a new one based on the provided input.
+- **Enter:** Execute the selection, switching focus to the chosen tab or launching a new one based on the provided query.
 - **Ctrl-R:** Rename the selected tab.
 - **Alt-Backspace:** Close the selected tab.
 - **Ctrl-X:** Reload to browse configuration directories (defaults to `~/.config`).
@@ -117,3 +117,4 @@ preview:
   - [x] Make file listing command configurable
   - [x] Make search paths for config and projects directories configurable by defining custom commands
   - [x] Make fzf header configurable
+  - [ ] Make keybinds configurable
