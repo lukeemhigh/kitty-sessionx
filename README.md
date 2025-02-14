@@ -37,6 +37,7 @@
 - [Kitty](https://sw.kovidgoyal.net/kitty/)
 - [fzf](https://github.com/junegunn/fzf): used to select and switch between tabs interactively
 - [zoxide](https://github.com/ajeetdsouza/zoxide): used to locate optimal directories when launching new sessions
+- [fd](https://github.com/sharkdp/fd): _optional_ - used to search for directories in user-defined paths
 - [eza](https://github.com/eza-community/eza): _optional_ - used to list directory contents for previewing
 - [jq](https://github.com/stedolan/jq): used to parse JSON output from Kitty
 
