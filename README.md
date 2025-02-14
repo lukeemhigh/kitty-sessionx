@@ -85,6 +85,18 @@ You can modify the paths that are searched when looking for config or project di
 ---
 reload:
   config: "fd . ~/.dotfiles/**/.config --min-depth 1 --max-depth 1 --type d --type l"
+  projects: ...
+```
+
+### Modify Fzf Headers
+
+If you modified one of the directory being searched, you may also want to modify the header being shown when reloading fzf to search that path to reflect the change. You can do so by modifying these keys in the config file:
+
+```yaml
+header:
+  tabs: "Your custom header here"
+  config: ...
+  projects: ...
 ```
 
 ### Modify Directory Contents Preview
@@ -107,6 +119,10 @@ reload:
 prompt:
   config: " Config Files > "
   projects: " Projects > "
+header:
+  tabs: "󰌑 : Switch to Selected Tab, Ctrl-X: Browse Config Directory, Ctrl-F: Browse Projects, Ctrl-R: Rename Tab, Alt-Backspace: Delete Tab"
+  config: "󰌑 : Open New Tab in Selected Path, Ctrl-S: Browse Kitty Tabs, Ctrl-F: Browse Projects"
+  projects: "󰌑 : Open New Tab in Selected Path, Ctrl-S: Browse Kitty Tabs, Ctrl-X: Browse Config Directory"
 preview:
   cmd: "ls --color=always -lh"
 ```
