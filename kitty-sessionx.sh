@@ -34,6 +34,9 @@ if [[ -n "${config_file:-}" ]]; then
     PROJECTS_RELOAD=\"" + .reload.projects + "\"
     CONFIG_PROMPT=\"" + .prompt.config + "\"
     PROJECTS_PROMPT=\"" + .prompt.projects + "\"
+    TABS_HEADER=\"" + .header.tabs + "\"
+    CONFIG_HEADER=\"" + .header.config + "\"
+    PROJECTS_HEADER=\"" + .header.projects + "\"
     DIR_PREVIEW=\"" + .preview.cmd + "\""
   ' "${config_file}" | sed 's/\$/\\$/g')"
 fi
@@ -41,15 +44,15 @@ fi
 export DIR_PREVIEW=${DIR_PREVIEW:-ls --color=always -lh}
 
 TABS_PROMPT=' Kitty Tabs > '
-TABS_HEADER='󰌑 : Switch to Selected Tab, Ctrl-X: Browse Config Directory, Ctrl-F: Browse Projects, Ctrl-R: Rename Tab, Alt-Backspace: Delete Tab'
+TABS_HEADER="${TABS_HEADER:-󰌑 : Switch to Selected Tab, Ctrl-X: Browse Config Directory, Ctrl-F: Browse Projects, Ctrl-R: Rename Tab, Alt-Backspace: Delete Tab}"
 TABS_RELOAD='kitty @ ls | jq -r ".[] | .tabs[] | .title"'
 
 CONFIG_PROMPT="${CONFIG_PROMPT:- Config Files > }"
-CONFIG_HEADER='󰌑 : Open New Tab in Selected Path, Ctrl-S: Browse Kitty Tabs, Ctrl-F: Browse Projects'
+CONFIG_HEADER="${CONFIG_HEADER:-󰌑 : Open New Tab in Selected Path, Ctrl-S: Browse Kitty Tabs, Ctrl-F: Browse Projects}"
 CONFIG_RELOAD="${CONFIG_RELOAD:-fd . ~/.config/** --min-depth 1 --max-depth 1 --type d}"
 
 PROJECTS_PROMPT="${PROJECTS_PROMPT:- Projects > }"
-PROJECTS_HEADER='󰌑 : Open New Tab in Selected Path, Ctrl-S: Browse Kitty Tabs, Ctrl-X: Browse Config Directory'
+PROJECTS_HEADER="${PROJECTS_HEADER:-󰌑 : Open New Tab in Selected Path, Ctrl-S: Browse Kitty Tabs, Ctrl-X: Browse Config Directory}"
 PROJECTS_RELOAD="${PROJECTS_RELOAD:-fd . ~/workspace/** --min-depth 1 --max-depth 1 --type d}"
 
 readarray -t active_sessions <<<"$(kitty @ ls | jq -r '.[] | .tabs[] | .title')"
