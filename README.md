@@ -60,6 +60,6 @@
 
 ## TODO
 
-- [ ] Externally configurable inner workings
+- [ ] External configuration
   - [ ] Make file listing command configurable
-  - [ ] Make search paths for config and project configurable by defining custom commands
+  - [ ] Make search paths for config and projects directories configurable by defining custom commands
