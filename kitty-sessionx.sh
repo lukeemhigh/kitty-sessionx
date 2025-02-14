@@ -16,18 +16,41 @@ set -o pipefail
 cmd="$(readlink -f "${0}")"
 cmd_path="$(dirname "${cmd}")"
 lib_path="${cmd_path}/lib"
+declare -a config_paths=(
+  "${XDG_CONFIG_HOME:-${HOME}/.config}/kitty/kitty-sessionx.yml"
+  "${cmd_path}/kitty-sessionx.yml"
+)
+
+for file in "${config_paths[@]}"; do
+  if [[ -f "${file}" ]]; then
+    config_file="${file}"
+    break
+  fi
+done
+
+if [[ -n "${config_file:-}" ]]; then
+  eval "$(yq -e --raw-output '
+    "CONFIG_RELOAD=\"" + .reload.config + "\"
+    PROJECTS_RELOAD=\"" + .reload.projects + "\"
+    CONFIG_PROMPT=\"" + .prompt.config + "\"
+    PROJECTS_PROMPT=\"" + .prompt.projects + "\"
+    DIR_PREVIEW=\"" + .preview.cmd + "\""
+  ' "${config_file}" | sed 's/\$/\\$/g')"
+fi
+
+export DIR_PREVIEW=${DIR_PREVIEW:-ls --color=always -lh}
 
 TABS_PROMPT=' Kitty Tabs > '
 TABS_HEADER='󰌑 : Switch to Selected Tab, Ctrl-X: Browse Config Directory, Ctrl-F: Browse Projects, Ctrl-R: Rename Tab, Alt-Backspace: Delete Tab'
 TABS_RELOAD='kitty @ ls | jq -r ".[] | .tabs[] | .title"'
 
-CONFIG_PROMPT=' Config Files > '
+CONFIG_PROMPT="${CONFIG_PROMPT:- Config Files > }"
 CONFIG_HEADER='󰌑 : Open New Tab in Selected Path, Ctrl-S: Browse Kitty Tabs, Ctrl-F: Browse Projects'
-CONFIG_RELOAD='fd . ~/.config --min-depth 1 --max-depth 1 --type d --type l'
+CONFIG_RELOAD="${CONFIG_RELOAD:-fd . ~/.config/** --min-depth 1 --max-depth 1 --type d}"
 
-PROJECTS_PROMPT=' Projects > '
+PROJECTS_PROMPT="${PROJECTS_PROMPT:- Projects > }"
 PROJECTS_HEADER='󰌑 : Open New Tab in Selected Path, Ctrl-S: Browse Kitty Tabs, Ctrl-X: Browse Config Directory'
-PROJECTS_RELOAD='fd . ~/git-repos/** --min-depth 1 --max-depth 1 --type d'
+PROJECTS_RELOAD="${PROJECTS_RELOAD:-fd . ~/workspace/** --min-depth 1 --max-depth 1 --type d}"
 
 readarray -t active_sessions <<<"$(kitty @ ls | jq -r '.[] | .tabs[] | .title')"
 

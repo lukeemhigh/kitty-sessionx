@@ -3,7 +3,7 @@
 fzf_match="${1}"
 
 if [[ -d ${fzf_match} ]]; then
-  eza --color=always -gH --icons --group-directories-first -lh "${fzf_match}"
+  eval "${DIR_PREVIEW} ${fzf_match}"
 else
   window_id="$(kitty @ ls | jq -r ".[] | .tabs[] | select(.title == \"${fzf_match}\") | .windows[0] | .id")"
 

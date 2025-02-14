@@ -37,9 +37,8 @@
 - [Kitty](https://sw.kovidgoyal.net/kitty/)
 - [fzf](https://github.com/junegunn/fzf): used to select and switch between tabs, select directories for new sessions, and more
 - [zoxide](https://github.com/ajeetdsouza/zoxide): used to match for directories when a non matching fzf query is provided
-- [fd](https://github.com/sharkdp/fd): _optional_ - used to search for directories in user-defined paths
-- [eza](https://github.com/eza-community/eza): _optional_ - used for previewing directory contents
 - [jq](https://github.com/stedolan/jq): used to parse JSON output from Kitty
+- [yq](https://github.com/mikefarah/yq): used to parse YAML configuration file
 
 ## Installation & Usage
 
@@ -67,8 +66,53 @@
 - **Ctrl-F:** Browse project directories (from `~/git-repos`).
 - **Ctrl-U / Ctrl-D:** Scroll the preview up or down respectively.
 
+## Configuration
+
+### Configuration Paths
+
+A configuration file named `kitty-sessionx.yml` will be searched in this locations:
+
+- `${XDG_CONFIG_HOME:-${HOME}/.config}/kitty/kitty-sessionx.yml`
+- `/kitty-sessionx/script/dir/kitty-sessionx.yml`
+
+If one of this files is found, then default configurations will be overridden with the ones provided in the file.
+
+### Modifying Search Paths
+
+You can modify the paths that are searched when looking for config or project directories by definining custom commands inside your `kitty-sessionx.yml` file, for example:
+
+```yaml
+---
+reload:
+  config: "fd . ~/.dotfiles/**/.config --min-depth 1 --max-depth 1 --type d --type l"
+```
+
+### Modify Directory Contents Preview
+
+You can also modify the command used for directory contents preview, for example:
+
+```yaml
+---
+preview:
+  cmd: "eza --color=always -gH --icons --group-directories-first -lh"
+```
+
+### Default configuration:
+
+```yaml
+---
+reload:
+  config: "find ~/.config/** -maxdepth 1 -type d"
+  projects: "find ~/workspace/** -mindepth 1 -maxdepth 1 -type d"
+prompt:
+  config: " Config Files > "
+  projects: " Projects > "
+preview:
+  cmd: "ls --color=always -lh"
+```
+
 ## TODO
 
-- [ ] External configuration
-  - [ ] Make file listing command configurable
-  - [ ] Make search paths for config and projects directories configurable by defining custom commands
+- [x] External configuration
+  - [x] Make file listing command configurable
+  - [x] Make search paths for config and projects directories configurable by defining custom commands
