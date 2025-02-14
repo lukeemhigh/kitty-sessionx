@@ -38,7 +38,7 @@
 - [fzf](https://github.com/junegunn/fzf): used to select and switch between tabs, select directories for new sessions, and more
 - [zoxide](https://github.com/ajeetdsouza/zoxide): used to match for directories when a non matching fzf query is provided
 - [fd](https://github.com/sharkdp/fd): _optional_ - used to search for directories in user-defined paths
-- [eza](https://github.com/eza-community/eza): _optional_ - used for previewing directory contens
+- [eza](https://github.com/eza-community/eza): _optional_ - used for previewing directory contents
 - [jq](https://github.com/stedolan/jq): used to parse JSON output from Kitty
 
 ## Installation & Usage
