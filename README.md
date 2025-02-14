@@ -1,16 +1,19 @@
-<div align="center">
-  <table>
-<tr>
-<td><img src="assets/images/screenshot-2025173949409414-014814.png" alt="Screenshot 1" width="400"/></td>
-<td><img src="assets/images/screenshot-2025173949358414-013944.png" alt="Screenshot 2" width="400"/></td>
-</tr>
-<tr>
-<td><img src="assets/images/screenshot-2025173949406914-014749.png" alt="Screenshot 3" width="400"/></td>
-<td><img src="assets/images/screenshot-2025173949405014-014730.png" alt="Screenshot 4" width="400"/></td>
-</tr>
-</div>
+# kitty-sessionx
+
+<table>
+  <tr>
+    <td><img src="assets/images/screenshot-2025173949409414-014814.png" alt="Screenshot 1" width="400"/></td>
+    <td><img src="assets/images/screenshot-2025173949358414-013944.png" alt="Screenshot 2" width="400"/></td>
+  </tr>
+  <tr>
+    <td><img src="assets/images/screenshot-2025173949406914-014749.png" alt="Screenshot 3" width="400"/></td>
+    <td><img src="assets/images/screenshot-2025173949405014-014730.png" alt="Screenshot 4" width="400"/></td>
+  </tr>
+</table>
 
 <p align="center"><strong>WIP: This project is still pretty much in alpha state.</strong></p>
+
+`kitty-sessionx` is a session manager for [Kitty](https://sw.kovidgoyal.net/kitty/) that leverages `fzf` for managing terminal tabs. It enables you to switch between tabs, launch new ones, rename, and close existing tabs with custom key bindings—making tab management quick and efficient.
 
 `kitty-sessionx` is a session manager for [Kitty](https://sw.kovidgoyal.net/kitty/) that leverages `fzf` for managing terminal tabs. It enables you to switch between tabs, launch new ones, rename, and close existing tabs with custom key bindings—making tab management quick and efficient.
 16: `kitty-sessionx` is a session manager for [Kitty](https://sw.kovidgoyal.net/kitty/) that leverages `fzf` for managing terminal tabs. It enables you to switch between tabs, launch new ones, rename, and close existing tabs with custom key bindings—making tab management quick and efficient.
