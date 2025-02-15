@@ -65,6 +65,7 @@
 - **Ctrl-S:** Refresh/reload the list of active `kitty` tabs.
 - **Ctrl-F:** Browse project directories (defaults to `~/workspace`).
 - **Ctrl-U / Ctrl-D:** Scroll the preview up or down respectively.
+- **F5:** Refresh the preview window
 
 ## Configuration
 

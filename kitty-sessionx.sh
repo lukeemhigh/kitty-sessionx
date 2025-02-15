@@ -94,5 +94,6 @@ printf '%s\n' "${active_sessions[@]}" |
     --bind "${PROJECTS_KEYBIND}:reload(${PROJECTS_RELOAD})+change-prompt(${PROJECTS_PROMPT})+change-header(${PROJECTS_HEADER})" \
     --bind "${PREVIEW_UP_KEYBIND}:preview-down" \
     --bind "${PREVIEW_DOWN_KEYBIND}:preview-up" \
+    --bind "f5:refresh-preview" \
     --layout=reverse \
     --padding=3%,1%
