@@ -16,6 +16,7 @@ set -o pipefail
 cmd="$(readlink -f "${0}")"
 cmd_path="$(dirname "${cmd}")"
 
+# HACK: I don't really know why it's `-gt` instead of `-ge`
 if [[ $(pgrep -f "${cmd}" | wc -l) -gt 2 ]]; then
   exit
 fi
