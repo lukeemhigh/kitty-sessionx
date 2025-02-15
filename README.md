@@ -1,11 +1,11 @@
 <table>
   <tr>
-    <td><img src="assets/images/screenshot-2025173949409414-014814.png" alt="Screenshot 1" width="400"/></td>
+    <td colspan="3"><img src="assets/images/screenshot-2025173949409414-014814.png" alt="Screenshot 1" width="400"/></td>
   </tr>
   <tr>
-    <td><img src="assets/images/screenshot-2025173949358414-013944.png" alt="Screenshot 2" width="400"/></td>
-    <td><img src="assets/images/screenshot-2025173949406914-014749.png" alt="Screenshot 3" width="400"/></td>
-    <td><img src="assets/images/screenshot-2025173949405014-014730.png" alt="Screenshot 4" width="400"/></td>
+    <td colspan="1"><img src="assets/images/screenshot-2025173949358414-013944.png" alt="Screenshot 2" width="400"/></td>
+    <td colspan="1"><img src="assets/images/screenshot-2025173949406914-014749.png" alt="Screenshot 3" width="400"/></td>
+    <td colspan="1"><img src="assets/images/screenshot-2025173949405014-014730.png" alt="Screenshot 4" width="400"/></td>
   </tr>
 </table>
   
