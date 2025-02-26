@@ -25,7 +25,10 @@
 
 - **Tab Management:**
   - **Switch Tabs:** Quickly focus on a tab by selecting its title.
-  - **Launch New Tabs:** Open new tabs in a specified directory. When a non-matching query is provided, `zoxide` is automatically called to find a matching directory for launching a new session, else a new session will be launched in your `${HOME}`
+  - **Launch New Tabs:** Open new tabs in a specified directory.
+    If the query matches a tab name, you'll switch to that tab.
+    When a non-matching query is provided, `zoxide` is automatically called to find a matching directory for launching a new session, else a new session will be launched in your `${HOME}`
+    If `${EDITOR}` variable is set, new tabs launched from projects/config "mode" will automatically launch your editor
   - **Rename Tabs:** Easily update the title of active tabs.
   - **Close Tabs:** Remove tabs with a simple key binding.
 - **Preview Support:**
@@ -160,7 +163,8 @@ preview:
 ## TODO
 
 - [x] External configuration
-  - [x] Make file listing command configurable
-  - [x] Make search paths for config and projects directories configurable by defining custom commands
-  - [x] Make fzf header configurable
-  - [x] Make keybinds configurable
+  - [x] Configurable directory preview command
+  - [x] Configurable projects and config/dotfiles search paths
+  - [x] Configurable fzf headers
+  - [x] Configurable keybindings
+  - [x] Automatically open projects and config directories in `${EDITOR}` (if variable is set)

@@ -4,7 +4,11 @@ query="${1:-None}"
 fzf_match="${2}"
 
 if [[ -d ${fzf_match} ]]; then
-  kitty @ launch --type=tab --tab-title="$(basename "${fzf_match}")" --cwd="${fzf_match}"
+  if [[ -n "${EDITOR}" ]] && which "${EDITOR}" >/dev/null 2>&1; then
+    kitty @ launch --type=tab --tab-title="$(basename "${fzf_match}")" --cwd="${fzf_match}" "${SHELL}" -c "${EDITOR} . && exec ${SHELL}"
+  else
+    kitty @ launch --type=tab --tab-title="$(basename "${fzf_match}")" --cwd="${fzf_match}"
+  fi
 else
   matched_tab_id=$(kitty @ ls | jq -r ".[] | .tabs[] | select(.title == \"${fzf_match}\") | .id")
 
