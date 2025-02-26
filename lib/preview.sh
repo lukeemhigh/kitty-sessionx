@@ -7,5 +7,5 @@ if [[ -d ${fzf_match} ]]; then
 else
   window_id="$(kitty @ ls | jq -r ".[] | .tabs[] | select(.title == \"${fzf_match}\") | .windows[0] | .id")"
 
-  kitty @ get-text --ansi --add-wrap-markers --add-cursor --match id:"${window_id}" | sed -e 's/133;A//g' -e 's/133;C//g'
+  kitty @ get-text --ansi --add-wrap-markers --add-cursor --match id:"${window_id}" | sed -e 's/133;A//g' -e 's/133;C//g' -e 's/;k=s//g'
 fi
