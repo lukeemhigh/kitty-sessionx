@@ -94,7 +94,7 @@ reload:
 
 ### Modify Keybindings
 
-You can change the keybindings used to perform every action in fzf by modifying you config file:
+You can change the keybindings used to perform every action in fzf by modifying your config file:
 
 ```yaml
 keys:
