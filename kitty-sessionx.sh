@@ -36,7 +36,7 @@ for file in "${config_paths[@]}"; do
 done
 
 if [[ -n "${config_file:-}" ]]; then
-  eval "$(yq -e --raw-output '
+  eval "$(yq eval '
     "CONFIG_RELOAD=\"" + .reload.config + "\"
     PROJECTS_RELOAD=\"" + .reload.projects + "\"
     TABS_PROMPT=\"" + .prompt.tabs + "\"
@@ -75,8 +75,8 @@ CONFIG_KEYBIND="${CONFIG_KEYBIND:-ctrl-x}"
 PROJECTS_KEYBIND="${PROJECTS_KEYBIND:-ctrl-f}"
 RENAME_KEYBIND="${RENAME_KEYBIND:-ctrl-r}"
 CLOSE_KEYBIND="${CLOSE_KEYBIND:-alt-backspace}"
-PREVIEW_UP_KEYBIND="${PREVIEW_UP_KEYBIND:-ctrl-u}"
-PREVIEW_DOWN_KEYBIND="${PREVIEW_DOWN_KEYBIND:-ctrl-d}"
+PREVIEW_UP_KEYBIND="${PREVIEW_UP_KEYBIND:-ctrl-d}"
+PREVIEW_DOWN_KEYBIND="${PREVIEW_DOWN_KEYBIND:-ctrl-u}"
 
 readarray -t active_sessions <<<"$(kitty @ ls | jq -r '.[] | .tabs[] | .title')"
 
