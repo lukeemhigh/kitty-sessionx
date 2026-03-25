@@ -8,7 +8,9 @@
     <td colspan="1"><img src="assets/images/screenshot-2025173949405014-014730.png" alt="Screenshot 4"/></td>
   </tr>
 </table>
-  
+
+# kitty-sessionx
+
 `kitty-sessionx` is a session manager for [Kitty](https://sw.kovidgoyal.net/kitty/) that leverages `fzf` for managing terminal tabs. It enables you to switch between tabs, launch new ones, rename, and close existing tabs with custom key bindings—making tab management quick and efficient.
 
 ## Table of Contents
